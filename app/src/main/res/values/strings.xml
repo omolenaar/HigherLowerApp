@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Higher Lower App</string>
+    <string name="textViewScore">Score: </string>
+    <string name="textViewHighScore">High Score:</string>
+</resources>
