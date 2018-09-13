@@ -68,6 +68,9 @@
         android:id="@+id/listView"
         android:layout_width="368dp"
         android:layout_height="196dp"
+        android:maxHeight="196dp"
+        android:orientation="vertical"
+        android:stackFromBottom="false"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewHighScore" />
