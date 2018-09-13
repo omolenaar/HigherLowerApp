@@ -4,7 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:background="@color/layoutColor"
+    tools:context=".MainActivity"
+    tools:layout_editor_absoluteY="81dp">
+
 
     <TextView
         android:id="@+id/textViewScore"
@@ -13,7 +16,6 @@
         android:layout_marginTop="16dp"
         android:text="@string/textViewScore"
         android:textSize="24sp"
-        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,7 +25,51 @@
         android:layout_height="wrap_content"
         android:text="@string/textViewHighScore"
         android:textSize="24sp"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textViewScore"
         app:layout_constraintTop_toBottomOf="@+id/textViewScore" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/listView"
+        app:layout_constraintRight_toRightOf="@+id/listView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/d3" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabHigher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:clickable="true"
+        android:focusable="auto"
+        app:layout_constraintBottom_toBottomOf="@+id/fabLower"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/fabLower"
+        app:srcCompat="@android:drawable/arrow_up_float" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabLower"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="26dp"
+        android:clickable="true"
+        android:focusable="auto"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:srcCompat="@android:drawable/arrow_down_float" />
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="368dp"
+        android:layout_height="196dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewHighScore" />
 
 </android.support.constraint.ConstraintLayout>
