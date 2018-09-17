@@ -1,5 +1,6 @@
 package com.example.android.higherlowerapp;
 
+import android.graphics.drawable.AnimationDrawable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,7 +18,6 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private int currentImageIndex = 0;
     private int [] mImageNames;
     private ImageView mImageView;
     private int prevRoll = 0;
@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
     private ListView mListView;
     private static final String TAG = "MyActivity";
     private ArrayAdapter mAdapter;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
         fabHigh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Get the user text from the textfield
                 higher=true;
                 rollDice();
             }
@@ -57,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
         fabLow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Get the user text from the textfield
                 higher=false;
                 rollDice();
             }
@@ -80,12 +77,10 @@ public class MainActivity extends AppCompatActivity {
             Log.i(TAG, "roll = " + roll + ", i = " + i);
             if (i < mImageNames.length) {
                 mImageView.setImageResource(mImageNames[i]);
-            } else {
-                Log.w(TAG, "Something wrong with i: " + i);
             }
 
             //populate the list
-            mThrowList.add(roll);
+            mThrowList.add(" Throw is "+roll);
             updateUI();
             mListView.setSelection(mThrowList.size()-1);
 
