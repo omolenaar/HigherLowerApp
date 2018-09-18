@@ -2,4 +2,9 @@
     <string name="app_name">Higher Lower App</string>
     <string name="textViewScore">Score: </string>
     <string name="textViewHighScore">High Score:</string>
+    <string name="textHighScore">High score:</string>
+    <string name="textScore">Score: </string>
+    <string name="imageViewDescription">myImageView</string>
+    <string name="listThrowText">Throw is </string>
+
 </resources>

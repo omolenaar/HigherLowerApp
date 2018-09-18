@@ -1,12 +1,10 @@
 package com.example.android.higherlowerapp;
 
-import android.graphics.drawable.AnimationDrawable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -15,6 +13,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -64,9 +63,11 @@ public class MainActivity extends AppCompatActivity {
         {
             //update score and high score
             TextView tvs = (TextView) findViewById(R.id.textViewScore);
-            tvs.setText("Score: " + score);
+            String scoreText = (getString(R.string.textScore) + score);
+            tvs.setText(scoreText);
             TextView tvhs = (TextView) findViewById(R.id.textViewHighScore);
-            tvhs.setText("High Score: " + highScore);
+            String highScoreText = (getString(R.string.textHighScore) + highScore);
+            tvhs.setText(highScoreText);
 
             //roll the dice
             double randomNumber;
@@ -80,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             //populate the list
-            mThrowList.add(" Throw is "+roll);
+            mThrowList.add("Throw is " +roll);
             updateUI();
             mListView.setSelection(mThrowList.size()-1);
 
@@ -89,15 +90,16 @@ public class MainActivity extends AppCompatActivity {
                 score = score + 1;
             else if (score > highScore) {
                 highScore = score;
-                tvhs.setText("High Score: " + highScore);
+                highScoreText = (getString(R.string.textHighScore) + highScore);
+                tvhs.setText(highScoreText);
                 score = 0;
-                mThrowList.removeAll(mThrowList);
+                mThrowList.clear();
                 updateUI();
                 Toast.makeText(getApplicationContext(), "New high score! Start over", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(getApplicationContext(), "You lost. Start over", Toast.LENGTH_SHORT).show();
                 score = 0;
-                mThrowList.removeAll(mThrowList);
+                mThrowList.clear();
             }
 
             prevRoll=roll;
