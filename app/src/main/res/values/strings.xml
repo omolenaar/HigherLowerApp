@@ -6,5 +6,6 @@
     <string name="textScore">Score: </string>
     <string name="imageViewDescription">myImageView</string>
     <string name="listThrowText">Throw is </string>
-
+    <string name="SnackBarNewHighScore">New high score! Start over</string>
+    <string name="SnackBarYouLose">You lost.. Please start over</string>
 </resources>

@@ -1,6 +1,7 @@
 package com.example.android.higherlowerapp;
 
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,11 +10,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         //initialize vars
         score=0;
         mListView = findViewById(R.id.listView);
-        mThrowList = new ArrayList<>();
+        mThrowList = new ArrayList<String>();
         mImageView = findViewById(R.id.imageView);
         mImageNames = new int[]{R.drawable.d1, R.drawable.d2, R.drawable.d3, R.drawable.d4, R.drawable.d5, R.drawable.d6};
 
@@ -62,12 +61,12 @@ public class MainActivity extends AppCompatActivity {
     private void rollDice() {
         {
             //update score and high score
-            TextView tvs = (TextView) findViewById(R.id.textViewScore);
+            TextView tvs = findViewById(R.id.textViewScore);
             String scoreText = (getString(R.string.textScore) + score);
             tvs.setText(scoreText);
-            TextView tvhs = (TextView) findViewById(R.id.textViewHighScore);
+            TextView tVHS = findViewById(R.id.textViewHighScore);
             String highScoreText = (getString(R.string.textHighScore) + highScore);
-            tvhs.setText(highScoreText);
+            tVHS    .setText(highScoreText);
 
             //roll the dice
             double randomNumber;
@@ -91,13 +90,15 @@ public class MainActivity extends AppCompatActivity {
             else if (score > highScore) {
                 highScore = score;
                 highScoreText = (getString(R.string.textHighScore) + highScore);
-                tvhs.setText(highScoreText);
+                tVHS.setText(highScoreText);
                 score = 0;
                 mThrowList.clear();
                 updateUI();
-                Toast.makeText(getApplicationContext(), "New high score! Start over", Toast.LENGTH_SHORT).show();
+                Snackbar.make(mImageView, R.string.SnackBarNewHighScore, Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
             } else {
-                Toast.makeText(getApplicationContext(), "You lost. Start over", Toast.LENGTH_SHORT).show();
+                Snackbar.make(mImageView, R.string.SnackBarYouLose, Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
                 score = 0;
                 mThrowList.clear();
             }
