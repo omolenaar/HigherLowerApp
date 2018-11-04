@@ -45,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 higher=true;
+                setScore(score);
+                setHighScore(highScore);
                 rollDice();
             }
         });
@@ -54,46 +56,52 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 higher=false;
+                setScore(score);
+                setHighScore(highScore);
                 rollDice();
             }
         });
     }
+    private void setScore(int score) {
+        TextView tvs = findViewById(R.id.textViewScore);
+        String scoreText = (getString(R.string.textScore) + score);
+        tvs.setText(scoreText);
+        //updateUI();
+    }
+
+    private void setHighScore(int highScore) {
+        TextView tVHS = findViewById(R.id.textViewHighScore);
+        String highScoreText = (getString(R.string.textHighScore) + highScore);
+        tVHS.setText(highScoreText);
+        //updateUI();
+    }
+
     private void rollDice() {
         {
-            //update score and high score
-            TextView tvs = findViewById(R.id.textViewScore);
-            String scoreText = (getString(R.string.textScore) + score);
-            tvs.setText(scoreText);
-            TextView tVHS = findViewById(R.id.textViewHighScore);
-            String highScoreText = (getString(R.string.textHighScore) + highScore);
-            tVHS    .setText(highScoreText);
-
             //roll the dice
             double randomNumber;
             randomNumber = Math.random() * 6;
             randomNumber = randomNumber + 1;
             int roll = (int) randomNumber;
             int i = roll - 1;
-            Log.i(TAG, "roll = " + roll + ", i = " + i);
             if (i < mImageNames.length) {
                 mImageView.setImageResource(mImageNames[i]);
             }
 
             //populate the list
             mThrowList.add("Throw is " +roll);
-            updateUI();
             mListView.setSelection(mThrowList.size()-1);
 
             //check result; chosen to include equal in lower (as in = not higher)
-            if (roll > prevRoll && higher || roll <= prevRoll && !higher)
-                score = score + 1;
+            if (roll > prevRoll && higher || roll <= prevRoll && !higher) {
+                score++;
+                setScore(score);
+            }
             else if (score > highScore) {
                 highScore = score;
-                highScoreText = (getString(R.string.textHighScore) + highScore);
-                tVHS.setText(highScoreText);
+                setHighScore(highScore);
                 score = 0;
                 mThrowList.clear();
-                updateUI();
                 Snackbar.make(mImageView, R.string.SnackBarNewHighScore, Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             } else {
@@ -102,9 +110,9 @@ public class MainActivity extends AppCompatActivity {
                 score = 0;
                 mThrowList.clear();
             }
-
             prevRoll=roll;
             Log.i(TAG,"score = "+score+", highScore = "+highScore);
+            updateUI();
         }
     }
     private void updateUI() {
