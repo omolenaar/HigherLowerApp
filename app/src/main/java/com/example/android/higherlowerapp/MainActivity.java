@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
 
             //populate the list
             mThrowList.add("Throw is " +roll);
-            mListView.setSelection(mThrowList.size()-1);
+            mListView.smoothScrollToPosition(mThrowList.size()-1);
 
             //check result; chosen to include equal in lower (as in = not higher)
             if (roll > prevRoll && higher || roll <= prevRoll && !higher) {
